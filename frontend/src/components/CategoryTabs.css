@@ -1,0 +1,64 @@
+.category-tabs {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.category-tab {
+    position: relative;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+}
+
+.category-tab.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.category-name {
+    margin-right: 20px;
+}
+
+.burger-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.burger-icon {
+    font-size: 20px;
+}
+
+.burger-options {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.burger-options button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.burger-options button:hover {
+    background-color: #f1f1f1;
+}
+
+.burger-menu:hover .burger-options {
+    display: block;
+}
