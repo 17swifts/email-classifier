@@ -22,14 +22,14 @@ const App = () => {
   const [showCategoryForm, setShowCategoryForm] = useState(false);
 
   useEffect(() => {
-    fetchRules().then(data => console.log(data));
-    fetchEmails().then(data => setEmails(data));
+    fetchEmails().then(data => setEmails(data['emails']));
+    fetchEmails().then(data => console.log(data['emails']));
     fetchRules().then(data => setCategories(data));
   }, []);
 
   const filteredEmails = emails.filter(email => 
     (activeCategory === 'All' || email.category === activeCategory) &&
-    (email.sender.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (email.from.toLowerCase().includes(searchQuery.toLowerCase()) ||
      email.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
      email.body.toLowerCase().includes(searchQuery.toLowerCase()))
   );
@@ -40,7 +40,7 @@ const App = () => {
       language: category.language,
       keywords: category.rules
     }).then((data) => {
-      setCategories(data);
+      setCategories(data['rules']);
       setShowCategoryForm(false);
     });
   };
@@ -51,7 +51,7 @@ const App = () => {
       language: updatedCategory.language,
       keywords: updatedCategory.rules
     }).then((data) => {
-      setCategories(data);
+      setCategories(data['rules']);
       setEditingCategory(null);
       setShowCategoryForm(false);
     });
@@ -59,8 +59,14 @@ const App = () => {
 
   const handleDeleteCategory = (category) => {
     deleteRule(category).then((data) => {
-      setCategories(data);
+      setCategories(data['rules']);
       setActiveCategory('All');
+    });
+  };
+
+  const handleUpdateEmailCategory = (emailId, newCategory) => {
+    updateEmailCategory(emailId, newCategory).then((data) => {
+      setEmails(data['emails']);
     });
   };
 
@@ -97,7 +103,7 @@ const App = () => {
               <EmailList
                 emails={filteredEmails}
                 onEmailClick={setSelectedEmail}
-                onCategoryChange={(emailId, newCategory) => updateEmailCategory(emailId, newCategory)}
+                onCategoryChange={(emailId, newCategory) => handleUpdateEmailCategory(emailId, newCategory)}
               />
             )}
           </>

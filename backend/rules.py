@@ -1,7 +1,3 @@
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
 # Define rules for classification with keywords for English, Dutch, and Danish
 rules = {
     "Immediate Attention": {
@@ -33,48 +29,3 @@ rules = {
         }
     }
 }
-
-@app.route('/rules', methods=['GET'])
-def get_rules():
-    return jsonify(rules)
-
-@app.route('/rules', methods=['POST'])
-def add_rule():
-    data = request.json
-    category = data.get('category')
-    language = data.get('language')
-    keywords = data.get('keywords')
-
-    if category not in rules:
-        rules[category] = {"languages": {}}
-
-    if "languages" not in rules[category]:
-        rules[category]["languages"] = {}
-
-    rules[category]["languages"][language] = keywords
-
-    return jsonify({'message': 'Rule added successfully', 'rules': rules})
-
-@app.route('/rules', methods=['PUT'])
-def edit_rule():
-    data = request.json
-    category = data.get('category')
-    language = data.get('language')
-    keywords = data.get('keywords')
-
-    if category in rules and "languages" in rules[category]:
-        rules[category]["languages"][language] = keywords
-        return jsonify({'message': 'Rule updated successfully', 'rules': rules})
-    else:
-        return jsonify({'message': 'Category or language not found'}), 404
-
-@app.route('/rules/<category>', methods=['DELETE'])
-def delete_rule(category):
-    if category in rules:
-        del rules[category]
-        return jsonify({'message': 'Rule deleted successfully', 'rules': rules})
-    else:
-        return jsonify({'message': 'Category not found'}), 404
-
-if __name__ == '__main__':
-    app.run(debug=True)

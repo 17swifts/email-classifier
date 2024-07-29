@@ -1,7 +1,7 @@
 .logo {
   display: flex;
-  position: sticky;
   align-items: center;
+  margin-left: 25px !important;
 }
 
 .logo img {

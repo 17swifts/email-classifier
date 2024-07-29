@@ -24,10 +24,10 @@ const EmailItem = ({ email, onClick, onCategoryChange }) => {
     <ListGroup.Item className="email-item-container">
       <div className="email-item" onClick={onClick}>
         <div className="email-avatar-container">
-          <Avatar value={getInitials(email.sender)} size={40} round={true} className="email-avatar" />
+          <Avatar value={getInitials(email.from)} size={40} round={true} className="email-avatar" />
         </div>
         <div className="email-content">
-          <div className="email-sender">{email.sender}</div>
+          <div className="email-sender">{email.from}</div>
           <div className="email-subject">{email.subject}</div>
           <div className="email-snippet">{snippet}</div>
         </div>

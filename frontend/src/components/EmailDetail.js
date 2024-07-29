@@ -11,7 +11,7 @@ const EmailDetail = ({ email, onClose }) => {
     <Card className="email-detail-card shadow">
       <Card.Header className="d-flex justify-content-between align-items-center">
         <div>
-          <strong>From:</strong> {email.sender} <br />
+          <strong>From:</strong> {email.from} <br />
           <strong>To:</strong> {email.to}
         </div>
         <CloseButton onClick={onClose} />
