@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 import EmailList from './components/EmailList';
 import CategoryTabs from './components/CategoryTabs';
 import SearchBar from './components/SearchBar';
@@ -8,6 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { fetchEmails, updateEmailCategory } from './services/emailService';
 import { fetchRules, addRule, editRule, deleteRule } from './services/ruleService';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const App = () => {
@@ -20,8 +22,9 @@ const App = () => {
   const [showCategoryForm, setShowCategoryForm] = useState(false);
 
   useEffect(() => {
+    fetchRules().then(data => console.log(data));
     fetchEmails().then(data => setEmails(data));
-    fetchRules().then(data => setCategories(Object.keys(data)));
+    fetchRules().then(data => setCategories(data));
   }, []);
 
   const filteredEmails = emails.filter(email => 
@@ -56,7 +59,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <div className="main-content">
+      <Container fluid>
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -73,8 +76,15 @@ const App = () => {
           />
         ) : (
           <>
-            <CategoryTabs
+            {/* <CategoryTabs
               categories={['All', ...categories]}
+              activeCategory={activeCategory}
+              onTabClick={setActiveCategory}
+              onEditCategory={setEditingCategory}
+              onDeleteCategory={handleDeleteCategory}
+            /> */}
+            <CategoryTabs
+              categories={categories}
               activeCategory={activeCategory}
               onTabClick={setActiveCategory}
               onEditCategory={setEditingCategory}
@@ -91,7 +101,7 @@ const App = () => {
             )}
           </>
         )}
-      </div>
+        </Container>
       <Footer />
     </div>
   );

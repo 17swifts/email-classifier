@@ -1,28 +1,21 @@
-.email-detail {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+.email-detail-card {
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.close-button {
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+.email-detail-card .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;
 }
 
-.close-button:hover {
-    background-color: #0056b3;
+.email-detail-card .card-title {
+    font-weight: bold;
 }
 
-.email-sender,
-.email-subject {
-    margin-bottom: 10px;
-}
-
-.email-body {
+.email-detail-card .card-text {
     white-space: pre-wrap;
+    /* Preserve whitespace formatting */
 }

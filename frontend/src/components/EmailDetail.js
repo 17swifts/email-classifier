@@ -1,15 +1,26 @@
-// components/EmailDetail.js
 import React from 'react';
+import { Card, CloseButton } from 'react-bootstrap';
 import './EmailDetail.css';
 
 const EmailDetail = ({ email, onClose }) => {
+  if (!email) {
+    return null;
+  }
+
   return (
-    <div className="email-detail">
-      <button className="close-button" onClick={onClose}>Close</button>
-      <div className="email-sender"><strong>From:</strong> {email.sender}</div>
-      <div className="email-subject"><strong>Subject:</strong> {email.subject}</div>
-      <div className="email-body">{email.body}</div>
-    </div>
+    <Card className="email-detail-card shadow">
+      <Card.Header className="d-flex justify-content-between align-items-center">
+        <div>
+          <strong>From:</strong> {email.sender} <br />
+          <strong>To:</strong> {email.to}
+        </div>
+        <CloseButton onClick={onClose} />
+      </Card.Header>
+      <Card.Body>
+        <Card.Title>{email.subject}</Card.Title>
+        <Card.Text>{email.body}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 

@@ -1,34 +1,40 @@
 import React from 'react';
+import { Nav, Dropdown } from 'react-bootstrap';
 import './CategoryTabs.css';
 
 const CategoryTabs = ({ categories, activeCategory, onTabClick, onEditCategory, onDeleteCategory }) => {
-  const handleEdit = (category) => {
-    onEditCategory(category);
-  };
-
-  const handleDelete = (category) => {
-    onDeleteCategory(category);
-  };
-
   return (
-    <div className="category-tabs">
-      {categories.map(category => (
-        <div
-          key={category}
-          className={`category-tab ${category === activeCategory ? 'active' : ''}`}
-          onClick={() => onTabClick(category)}
+    <Nav variant="tabs" className="mb-3">
+      <Nav.Item key="All">
+        <Nav.Link
+          active={activeCategory === 'All'}
+          onClick={() => onTabClick('All')}
         >
-          <span className="category-name">{category}</span>
-          <div className="burger-menu">
-            <div className="burger-icon">&#x2630;</div>
-            <div className="burger-options">
-              <button onClick={(e) => { e.stopPropagation(); handleEdit(category); }}>Edit</button>
-              <button onClick={(e) => { e.stopPropagation(); handleDelete(category); }}>Delete</button>
-            </div>
-          </div>
-        </div>
+          All
+        </Nav.Link>
+      </Nav.Item>
+      {Object.keys(categories).map(category => (
+        <Nav.Item key={category}>
+          <Nav.Link
+            active={category === activeCategory}
+            onClick={() => onTabClick(category)}
+          >
+            {category}
+            <Dropdown className="d-inline ml-2">
+              <Dropdown.Toggle as="span" className="burger-menu">
+                &#x2630;
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => onEditCategory({ name: category, languages: categories[category].languages })}>
+                  Edit Category
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => onDeleteCategory(category)}>Delete Category</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav.Link>
+        </Nav.Item>
       ))}
-    </div>
+    </Nav>
   );
 };
 

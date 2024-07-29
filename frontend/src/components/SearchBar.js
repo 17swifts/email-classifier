@@ -1,16 +1,21 @@
 import React from 'react';
+import { Form, Button, InputGroup } from 'react-bootstrap';
 import './SearchBar.css';
 
 const SearchBar = ({ searchQuery, setSearchQuery, onAddCategory }) => {
   return (
-    <div className="search-bar">
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search emails..."
-      />
-      <button onClick={onAddCategory} className="add-category-button">Add Category</button>
+    <div className="search-bar mb-3">
+      <InputGroup>
+        <Form.Control
+          type="text"
+          placeholder="Search emails..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <Button onClick={onAddCategory}>
+          Add Category
+        </Button>
+      </InputGroup>
     </div>
   );
 };

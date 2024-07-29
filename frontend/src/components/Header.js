@@ -1,14 +1,19 @@
 import React from 'react';
+import { Navbar, Container } from 'react-bootstrap';
 import './Header.css';
 
 const Header = () => {
   return (
-    <header className="header">
-      <div className="logo">
-        <img src="logo.png" alt="Logo" />
-        <h1>Email Client</h1>
-      </div>
-    </header>
+    <Navbar bg="dark" variant="dark" sticky="top">
+      <Container>
+        <Navbar.Brand>
+          <div className="logo">
+            <img src="logo-white.png" alt="Logo" />
+            <h1>Email Client</h1>
+          </div>
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
   );
 };
 

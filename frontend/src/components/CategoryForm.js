@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Modal, Form, Button } from 'react-bootstrap';
 import './CategoryForm.css';
 
 const CategoryForm = ({ category, onSubmit, onCancel }) => {
   const [name, setName] = useState(category?.name || '');
-  const [language, setLanguage] = useState(category?.language || 'en');
-  const [rules, setRules] = useState(category?.rules?.join(', ') || '');
+  const [language, setLanguage] = useState(category ? Object.keys(category.languages)[0] : 'en');
+  const [rules, setRules] = useState(category ? category.languages[language].join(', ') : '');
+
+  useEffect(() => {
+    if (category) {
+      setName(category.name);
+      setLanguage(Object.keys(category.languages)[0]);
+      setRules(category.languages[Object.keys(category.languages)[0]].join(', '));
+    }
+  }, [category]);
+
+  useEffect(() => {
+    if (category && language) {
+      setRules(category.languages[language].join(', '));
+    }
+  }, [language, category]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,31 +32,57 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
   };
 
   return (
-    <div className="category-form-overlay">
-      <form className="category-form" onSubmit={handleSubmit}>
-        <h2>{category ? 'Edit Category' : 'Add Category'}</h2>
-        <label>
-          Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        </label>
-        <label>
-          Language:
-          <select value={language} onChange={(e) => setLanguage(e.target.value)} required>
-            <option value="en">English</option>
-            <option value="nl">Dutch</option>
-            <option value="da">Danish</option>
-          </select>
-        </label>
-        <label>
-          Rules (comma separated):
-          <input type="text" value={rules} onChange={(e) => setRules(e.target.value)} required />
-        </label>
-        <div className="form-buttons">
-          <button type="submit">{category ? 'Update' : 'Add'}</button>
-          <button type="button" onClick={onCancel}>Cancel</button>
-        </div>
-      </form>
-    </div>
+    <Modal show onHide={onCancel}>
+      <Modal.Header closeButton>
+        <Modal.Title>{category ? 'Edit Category' : 'Add Category'}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              disabled={!!category}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Language</Form.Label>
+            <Form.Control
+              as="select"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              required
+            >
+              <option value="en">English</option>
+              <option value="nl">Dutch</option>
+              <option value="da">Danish</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Rules (comma separated)</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={4}
+              type="text"
+              value={rules}
+              onChange={(e) => setRules(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <div className="form-buttons">
+            <Button variant="primary" type="submit">
+              {category ? 'Update' : 'Add'}
+            </Button>
+            <Button variant="secondary" onClick={onCancel}>
+              Cancel
+            </Button>
+          </div>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
 };
 
