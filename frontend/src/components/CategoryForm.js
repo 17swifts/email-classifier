@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-import './CategoryForm.css';
+import './styles/CategoryForm.css';
 
 const CategoryForm = ({ category, onSubmit, onCancel }) => {
   const [name, setName] = useState(category?.name || '');

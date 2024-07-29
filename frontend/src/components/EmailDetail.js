@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CloseButton } from 'react-bootstrap';
-import './EmailDetail.css';
+import './styles/EmailDetail.css';
 
 const EmailDetail = ({ email, onClose }) => {
   if (!email) {

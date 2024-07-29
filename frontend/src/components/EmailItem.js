@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dropdown, ListGroup } from 'react-bootstrap';
 import Avatar from 'react-avatar';
-import './EmailItem.css';
+import './styles/EmailItem.css';
 
 const EmailItem = ({ email, onClick, onCategoryChange }) => {
   const snippet = email.body.length > 200 ? `${email.body.substring(0, 197)}...` : email.body;

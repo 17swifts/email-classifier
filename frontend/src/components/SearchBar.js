@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
-import './SearchBar.css';
+import './styles/SearchBar.css';
 
 const SearchBar = ({ searchQuery, setSearchQuery, onAddCategory }) => {
   return (

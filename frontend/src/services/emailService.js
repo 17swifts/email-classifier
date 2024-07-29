@@ -1,5 +1,7 @@
+const API_URL = 'http://localhost:5000';
+
 export const fetchEmails = async () => {
-    // const response = await fetch('http://localhost:5000/emails');
+    // const response = await fetch(`${API_URL}/emails`);
     // const data = await response.json();
     const data = 
           [{
@@ -165,49 +167,20 @@ export const fetchEmails = async () => {
     return data;
   };
 
-  export const addCategory = async () => {};
-  export const editCategory = async () => {}; 
-  export const updateEmailCategory = async () => {}; 
-
 //   export const fetchEmails = async () => {
 //     const response = await fetch('http://localhost:5000/emails');
 //     const data = await response.json();
 //     return data;
 //   };
-  
-//   export const addCategory = async (category) => {
-//     const response = await fetch('http://localhost:5000/categories', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(category)
-//     });
-//     const data = await response.json();
-//     return data;
-//   };
-  
-//   export const editCategory = async (category) => {
-//     const response = await fetch(`http://localhost:5000/categories/${category.name}`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(category)
-//     });
-//     const data = await response.json();
-//     return data;
-//   };
-  
-//   export const updateEmailCategory = async (email) => {
-//     const response = await fetch(`http://localhost:5000/emails/${email.id}`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(email)
-//     });
-//     const data = await response.json();
-//     return data;
-//   };
-  
+
+  export const updateEmailCategory = async (email) => {
+    const response = await fetch(`${API_URL}/emails/${email.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(email)
+    });
+    const data = await response.json();
+    return data;
+  };

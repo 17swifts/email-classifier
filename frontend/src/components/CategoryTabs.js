@@ -1,6 +1,6 @@
 import React from 'react';
 import { Nav, Dropdown } from 'react-bootstrap';
-import './CategoryTabs.css';
+import './styles/CategoryTabs.css';
 
 const CategoryTabs = ({ categories, activeCategory, onTabClick, onEditCategory, onDeleteCategory }) => {
   return (

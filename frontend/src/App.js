@@ -35,15 +35,23 @@ const App = () => {
   );
 
   const handleAddCategory = (category) => {
-    addRule(category).then((data) => {
-      setCategories(Object.keys(data.rules));
+    addRule({
+      category: category.name,
+      language: category.language,
+      keywords: category.rules
+    }).then((data) => {
+      setCategories(data);
       setShowCategoryForm(false);
     });
   };
 
   const handleEditCategory = (updatedCategory) => {
-    editRule(updatedCategory).then((data) => {
-      setCategories(Object.keys(data.rules));
+    editRule({
+      category: updatedCategory.name,
+      language: updatedCategory.language,
+      keywords: updatedCategory.rules
+    }).then((data) => {
+      setCategories(data);
       setEditingCategory(null);
       setShowCategoryForm(false);
     });
@@ -51,7 +59,7 @@ const App = () => {
 
   const handleDeleteCategory = (category) => {
     deleteRule(category).then((data) => {
-      setCategories(Object.keys(data.rules));
+      setCategories(data);
       setActiveCategory('All');
     });
   };
@@ -76,13 +84,6 @@ const App = () => {
           />
         ) : (
           <>
-            {/* <CategoryTabs
-              categories={['All', ...categories]}
-              activeCategory={activeCategory}
-              onTabClick={setActiveCategory}
-              onEditCategory={setEditingCategory}
-              onDeleteCategory={handleDeleteCategory}
-            /> */}
             <CategoryTabs
               categories={categories}
               activeCategory={activeCategory}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import EmailItem from './EmailItem';
-import './EmailList.css';
+import './styles/EmailList.css';
 
 const EmailList = ({ emails, onEmailClick, onCategoryChange }) => {
   return (
