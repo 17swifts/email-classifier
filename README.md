@@ -12,6 +12,7 @@
 - [Technologies Used](#technologies-used)
 - [Approach](#approach)
 - [Classification Lit Review and Thoughts](#classification-lit-review-and-thoughts)
+- [Testing](#testing)
 
 ## Overview
 This project is an email client application developed as part of a technical assignment for Shipster. The application classifies emails into categories such as Immediate Attention, Promotional, Updates, and Junk. It includes a user-friendly interface built with React and Bootstrap, and a backend API built with Python and Flask for managing email data and rules. Emails are classified using a rule basede filtering approach with help from Natural Language Processing (spaCy) to support multiple languages. Given more data, a hybrid classification approach would be used with a machine learning model. Similarly, an SQLLite database would also be added to store stateful data and improve category management features described below. 
@@ -146,3 +147,33 @@ Clone the repository
 - Ideally I would want to use a hybrid approach, as this would cover all edge cases and be more scalable and maintainable, however with data limitations I followed a simple rule based filtering approach 
 - Research on the classification of emails topic showed a preference for machine learning as the main approach. Especially when it came to spam or not spam. Algorithms of note were Support Vector Classification (SVC), Naïve Bayes (NB) or Artifical Neural Networks (AAN). However, each of these studies had a labelled dataset of more than 1000 emails. With only 20 emails unlabelled, such an approach would not be feasile.
 - I wrote an example program using SVC algorithm, however only had a maximum accuracy of 0.4 which is not acceptable for this project
+
+## Testing
+
+For this project I considered doing unit tests for both the front and backend. For python and flask, I would have used `pytest` to mock and check the endpoints. For react, the built in node testing with `App.test.js` would have been extended past loading the App page. However, with time constraints I decided to focus on Functional Testing the of features developed and documented manually. 
+
+| Requirement | Pass/Fail |
+| ----------- | --------- |
+| Application can GET classified emails | Pass |
+| Application can GET categories with lanuages & rules | Pass |
+| User can swap between categories and the emails list changes | Pass |
+| User can view all emails regardless of category in one list | Pass |
+| User can search for an email based on sender | Pass |
+| User can search for an email based on email subject | Pass |
+| User can search for an email based on email body | Pass |
+| User can add a category by specifying the name, language and rules | Pass |
+| Added category appears as a new tab and any emails reclassified appear under it | Pass |
+| Added category appears as an option to move email to | Fail |
+| User can edit rules for a given category | Pass |
+| Edited rules then reclassify emails | Pass |
+| User can delete a category | Pass |
+| Deleted categories are no longer visible as a tab | Pass |
+| After deletion of a category, emails in that category are reclassifed | Pass |
+| User can move an email from one category to another | Pass |
+| User can click on an email to view it in detail | Pass |
+| User can click on the chart button to view analytics | Pass |
+| Analytics display detail for only current categories | Pass |
+| Header component is sticky to the top of the screen | Pass |
+| Wesbite performs reasonaly in mobile view | Pass |
+| Burger menu dropdown works | Pass |
+| User known which email they are viewing using hover over features | Pass |
