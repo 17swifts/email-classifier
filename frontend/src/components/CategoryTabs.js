@@ -4,6 +4,7 @@ import './styles/CategoryTabs.css';
 
 const CategoryTabs = ({ categories, activeCategory, onTabClick, onEditCategory, onDeleteCategory }) => {
   return (
+    // Add an All tab containing emails regardless of category. This tab does not have a burger menu
     <Nav variant="tabs" className="category-tabs">
       <Nav.Item key="All" className="category-tab-item">
         <Nav.Link
@@ -13,6 +14,7 @@ const CategoryTabs = ({ categories, activeCategory, onTabClick, onEditCategory, 
           All
         </Nav.Link>
       </Nav.Item>
+      {/* For all other categories map them to a Nav item */}
       {Object.keys(categories).map(category => (
         <Nav.Item key={category} className="category-tab-item">
           <Nav.Link

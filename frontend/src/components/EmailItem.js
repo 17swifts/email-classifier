@@ -6,6 +6,7 @@ import './styles/EmailItem.css';
 const EmailItem = ({ email, onClick, onCategoryChange }) => {
   const snippet = email.body.length > 200 ? `${email.body.substring(0, 197)}...` : email.body;
 
+  // Function to get the initals from the sender of the email to display in the avatar 
   function getInitials(email) {
     // Splitting the email into parts
     const parts = email.split('@')[0].split('.');

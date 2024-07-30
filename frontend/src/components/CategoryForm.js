@@ -7,6 +7,7 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
   const [language, setLanguage] = useState(category ? Object.keys(category.languages)[0] : 'en');
   const [rules, setRules] = useState(category ? category.languages[language].join(', ') : '');
 
+  // Set the names, rules and langugage when editting
   useEffect(() => {
     if (category) {
       setName(category.name);
@@ -15,12 +16,14 @@ const CategoryForm = ({ category, onSubmit, onCancel }) => {
     }
   }, [category]);
 
+  // Changes the rules shown when the language selecter is changed in edit view
   useEffect(() => {
     if (category && language) {
       setRules(category.languages[language].join(', '));
     }
   }, [language, category]);
 
+  // When the form is submitted create a category object to return containing the name, langauge and rules
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCategory = {
