@@ -41,27 +41,27 @@ To run this project locally you will need the following softwares installed.
 
 Clone the repository 
 ```bash
-   git clone https://github.com/17swifts/Email-classifier.git
-   cd Email-classifier
+git clone https://github.com/17swifts/Email-classifier.git
+cd Email-classifier
 ```
 
 ### Backend
 
-1. Navigate to the backend directory.
+1. Navigate to the backend directory. `cd backend`
 2. Install dependencies: `conda create --name emailclassifier --file requirements.txt`
 3. Activate conda environent `conda activate emailclassifier`
 4. Run the server: `python main.py`
 
 ### Frontend
 
-1. Navigate to the frontend directory.
+1. Navigate to the frontend directory. `cd frontend`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
 
 ## Classification Logic
 
 - Emails are read from the file with utf-8 encoding for non qwerty characters.
-- The language of the email is detected using Natural Language Processing library spaCy 
+- The language of the email is detected using Natural Language Processing library `spaCy`
 - Emails are classified using rule based filtering, where the category with the most hits/ count is assigned to that email
 - Rules are stored in as json/ dict in a separate rules.py file
 
@@ -75,7 +75,7 @@ Clone the repository
 ## Assumptions & Limitations
 
 - Given the provided 20 emails is the training set for classification, the correct category must be known for accuracy testing. This was not provided, therefore, I manually classified the emails based on my personal understanding of the categories. 
-- The application uses useState and useEffect components of React to store state variables, however all changes made during the session are not stored in a database or external data store. Therefore for each session new categories or edits made are wiped. With more time I would implement a database using SQLite
+- The application uses `useState` and `useEffect` components of React to store state variables, however all changes made during the session are not stored in a database or external data store. Therefore for each session new categories or edits made are wiped. With more time I would implement a database using SQLite
 - Classifcation of emails only supports 3 languages, English, Dutch and Danish. So whilst it supports multiple lanaguges, it is not scalable without further development. 
 
 ## React Components
