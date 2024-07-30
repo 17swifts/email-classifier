@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
+import Analytics from './components/Analytics';
 import EmailList from './components/EmailList';
 import CategoryTabs from './components/CategoryTabs';
 import SearchBar from './components/SearchBar';
@@ -20,6 +21,7 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [editingCategory, setEditingCategory] = useState(null);
   const [showCategoryForm, setShowCategoryForm] = useState(false);
+  const [showAnalytics, setShowAnalytics] = useState(false);
 
   useEffect(() => {
     fetchEmails().then(data => setEmails(data['emails']));
@@ -41,6 +43,7 @@ const App = () => {
       keywords: category.rules
     }).then((data) => {
       setCategories(data['rules']);
+      setEmails(data['emails']);
       setShowCategoryForm(false);
     });
   };
@@ -53,6 +56,7 @@ const App = () => {
     }).then((data) => {
       setCategories(data['rules']);
       setEditingCategory(null);
+      setEmails(data['emails']);
       setShowCategoryForm(false);
     });
   };
@@ -60,6 +64,7 @@ const App = () => {
   const handleDeleteCategory = (category) => {
     deleteRule(category).then((data) => {
       setCategories(data['rules']);
+      setEmails(data['emails']);
       setActiveCategory('All');
     });
   };
@@ -72,8 +77,8 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
-      <Container fluid>
+      <Header onAnalyticsClick={() => setShowAnalytics(true)} />
+      <Container fluid="lg">
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -110,6 +115,11 @@ const App = () => {
         )}
         </Container>
       <Footer />
+      <Analytics 
+        show={showAnalytics} 
+        onHide={() => setShowAnalytics(false)} 
+        emailData={emails} 
+      />
     </div>
   );
 };

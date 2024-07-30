@@ -2,16 +2,41 @@
     color: var(--color-secondary) !important;
 }
 
-.nav-link:active {
-    color: black !important;
+.category-tabs {
+    position: relative;
+    z-index: 1000;
+    /* Ensure the tabs have a high z-index */
 }
 
-.burger-menu {
-    margin-left: 10px;
+.category-tab-item {
     position: relative;
 }
 
-.burger-menu .dropdown-menu {
-    z-index: 2000 !important;
-    position: absolute;
+.category-tab-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-dropdown {
+    position: relative;
+    margin-left: 8px;
+}
+
+.category-dropdown-menu {
+    z-index: 1100;
+    /* Ensure the dropdown menu appears above other elements */
+}
+
+/* Additional styles to prevent overlapping issues */
+.email-list {
+    position: relative;
+    z-index: 500;
+    /* Ensure email list has a lower z-index than the dropdown */
+}
+
+.email-item {
+    position: relative;
+    z-index: 500;
+    /* Ensure email items have a lower z-index than the dropdown */
 }

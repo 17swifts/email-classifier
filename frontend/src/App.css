@@ -23,11 +23,6 @@
   --color-text: #000000;
   --color-border: #425B77;
 
-  /* Feedback */
-  --color-success: #79BB98;
-  --color-error: #C39B9C;
-  --color-warning: #cfd66b;
-
   /* Buttons */
   --btn-primary-bg: var(--color-primary);
   --btn-primary-hover: var(--color-primary-light-2);

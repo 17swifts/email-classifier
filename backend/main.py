@@ -23,7 +23,7 @@ def update_email_category(id):
     category = data.get('newCategory')
 
     emails = classify_emails(rules)
-    if int(id)-1 in emails['emails']:
+    if int(id)-1 < len(emails['emails']):
         emails['emails'][int(id)-1]['category'] = category
         return jsonify({'message': 'Successfully updated email category', 'emails': emails['emails']})
     else:
@@ -78,7 +78,9 @@ def edit_rule():
 def delete_rule(category):
     if category in rules:
         del rules[category]
-        return jsonify({'message': 'Successfully deleted rule', 'rules': rules})
+        # Re-classify the emails without the rule
+        emails = classify_emails(rules)
+        return jsonify({'message': 'Successfully deleted rule', 'rules': rules, 'emails': emails['emails']})
     else:
         return jsonify({'message': 'Category not found'}), 404
 

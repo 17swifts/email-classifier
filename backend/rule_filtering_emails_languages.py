@@ -54,7 +54,7 @@ def classify_email(email, rules):
 def classify_emails(rules):
     # Load the JSON data
     current_dir = os.path.dirname(__file__)
-    with open(os.path.join(current_dir, 'data', 'emails.json'), 'r', encoding='utf-8') as file:
+    with open(os.path.join(current_dir, 'data', 'ShipsterAssignment.json'), 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     emails = data['emails']

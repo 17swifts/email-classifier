@@ -4,8 +4,8 @@ import './styles/CategoryTabs.css';
 
 const CategoryTabs = ({ categories, activeCategory, onTabClick, onEditCategory, onDeleteCategory }) => {
   return (
-    <Nav variant="tabs" className="mb-3">
-      <Nav.Item key="All">
+    <Nav variant="tabs" className="category-tabs">
+      <Nav.Item key="All" className="category-tab-item">
         <Nav.Link
           active={activeCategory === 'All'}
           onClick={() => onTabClick('All')}
@@ -14,23 +14,25 @@ const CategoryTabs = ({ categories, activeCategory, onTabClick, onEditCategory, 
         </Nav.Link>
       </Nav.Item>
       {Object.keys(categories).map(category => (
-        <Nav.Item key={category}>
+        <Nav.Item key={category} className="category-tab-item">
           <Nav.Link
             active={category === activeCategory}
             onClick={() => onTabClick(category)}
           >
-            {category}
-            <Dropdown className="d-inline ml-2">
-              <Dropdown.Toggle as="span" className="burger-menu">
-                &#x2630;
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={() => onEditCategory({ name: category, languages: categories[category].languages })}>
-                  Edit Category
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => onDeleteCategory(category)}>Delete Category</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <div className="category-tab-content">
+              {category}
+              <Dropdown className="category-dropdown">
+                <Dropdown.Toggle as="span" className="category-dropdown-toggle">
+                  &#x2630;
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="category-dropdown-menu">
+                  <Dropdown.Item onClick={() => onEditCategory({ name: category, languages: categories[category].languages })}>
+                    Edit Category
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => onDeleteCategory(category)}>Delete Category</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
           </Nav.Link>
         </Nav.Item>
       ))}
