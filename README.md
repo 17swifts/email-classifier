@@ -17,6 +17,9 @@
 ## Overview
 This project is an email client application developed as part of a technical assignment for Shipster. The application classifies emails into categories such as Immediate Attention, Promotional, Updates, and Junk. It includes a user-friendly interface built with React and Bootstrap, and a backend API built with Python and Flask for managing email data and rules. Emails are classified using a rule basede filtering approach with help from Natural Language Processing (spaCy) to support multiple languages. Given more data, a hybrid classification approach would be used with a machine learning model. Similarly, an SQLLite database would also be added to store stateful data and improve category management features described below. 
 
+![image](https://github.com/user-attachments/assets/106a68fb-2e6f-4d89-ab63-846415645254)
+
+
 ## Features
 - **Email Classification**: Automatically categorize emails based on predefined rules.
 - **Category Management**: Add, edit, and delete categories and their associated rules.
