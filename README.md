@@ -10,6 +10,8 @@
 - [Components](#reat-components)
 - [Backend API](#backend-api)
 - [Technologies Used](#technologies-used)
+- [Approach](#approach)
+- [Classification Lit Review and Thoughts](#classification-lit-review-and-thoughts)
 
 ## Overview
 This project is an email client application developed as part of a technical assignment for Shipster. The application classifies emails into categories such as Immediate Attention, Promotional, Updates, and Junk. It includes a user-friendly interface built with React and Bootstrap, and a backend API built with Python and Flask for managing email data and rules. Emails are classified using a rule basede filtering approach with help from Natural Language Processing (spaCy) to support multiple languages. Given more data, a hybrid classification approach would be used with a machine learning model. Similarly, an SQLLite database would also be added to store stateful data and improve category management features described below. 
@@ -68,9 +70,9 @@ Clone the repository
 
 ## Assumptions & Limitations
 
-- The solution needs to work across multiple languages.
 - Given the provided 20 emails is the training set for classification, the correct category must be known for accuracy testing. This was not provided, therefore, I manually classified the emails based on my personal understanding of the categories. 
-- The application 
+- The application uses useState and useEffect components of React to store state variables, however all changes made during the session are not stored in a database or external data store. Therefore for each session new categories or edits made are wiped. With more time I would implement a database using SQLite
+- Classifcation of emails only supports 3 languages, English, Dutch and Danish. So whilst it supports multiple lanaguges, it is not scalable without further development. 
 
 ## React Components
 
@@ -98,3 +100,49 @@ Clone the repository
 
 - **Frontend**: React, Bootstrap, react-bootstrap, react-avatar, react-chartjs-2, chart.js
 - **Backend**: Python, spaCy, Flask, Flask-CORS
+
+## Approach
+
+- 1 hour understanding the project
+- Background research on the best methods for email classification
+- UI/UX design
+    - Started with hand drawn mockup and ideas
+    - I can use the mockup to create component names 
+    - I wanted the emails to look like how Gmail or outlook display emails in a list. Having a similar design to existing applications resonates with users, and the familiarity is appealing 
+    - I also wanted a clean and simple color scheme that emulated that used by The Shipping Collective 
+- Implement classification of emails as python file
+- Using mock classified email, created the UI
+- Created main python file with endpoints in flask to fetch from the front end
+- Improved styling 
+- Created basic testing plan
+- Tested features of the application
+- Fixed any small bugs or styling issues
+
+## Classification Lit Review and Thoughts
+
+- Multiple approaches for classifiers 
+    - **Rule-Based Filtering**
+        - Easy to implement and can be effective for well-defined tasks.
+        - Tailor the rules to the specific scenario
+        - Risk of overfitting to the provided data
+        - Risk of scalability because rules need to be updated as we encounter new patterns. Too many rules too frequently 
+        - Risk of scalability because it only works for the specified languages. Adding more requires further maintenance
+        - Risk of Coverage as it may miss nuances in text that machine learning models could capture.
+        - Could use a translator to convert to a common language i.e English however through testing it was found to be extremely slow and also risks incorrectly translating nuances to languages 
+    - **Machine learning**
+        - Assumes that the category field exists in the JSON data and is correctly labelled (we do not have this)
+        - Requires enough labelled data for each category to train the model effectively (we do not have this)
+        - Major data dependencies 
+        - Easily scalable for languages and coverage 
+        - Automatically identifies and learns features relevant to classification from the data, potentially uncovering complex patterns
+        - Risk for overfitting like rule based filtering 
+    - **Natural Language Processing (NLP) Techniques**
+        - Can understand nuances in text unlike the other methods 
+        - Take a long time to run and can be resource heavy 
+        - Some technical complexity not needed in this case
+    - **Hybrid Approaches** (using both rule-based and ML for example)
+        - Is more flexible because it combines strengths of different methods to improve overall performance.
+        - Can address limitations of individual approaches, such as combining rule-based methods with machine learning to handle edge cases.
+- Ideally I would want to use a hybrid approach, as this would cover all edge cases and be more scalable and maintainable, however with data limitations I followed a simple rule based filtering approach 
+- Research on the classification of emails topic showed a preference for machine learning as the main approach. Especially when it came to spam or not spam. Algorithms of note were Support Vector Classification (SVC), Naïve Bayes (NB) or Artifical Neural Networks (AAN). However, each of these studies had a labelled dataset of more than 1000 emails. With only 20 emails unlabelled, such an approach would not be feasile.
+- I wrote an example program using SVC algorithm, however only had a maximum accuracy of 0.4 which is not acceptable for this project
