@@ -107,6 +107,7 @@ const App = () => {
             ) : (
               <EmailList
                 emails={filteredEmails}
+                categories={categories}
                 onEmailClick={setSelectedEmail}
                 onCategoryChange={(emailId, newCategory) => handleUpdateEmailCategory(emailId, newCategory)}
               />

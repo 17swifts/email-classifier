@@ -163,7 +163,7 @@ For this project I considered doing unit tests for both the front and backend. F
 | User can search for an email based on email body | Pass |
 | User can add a category by specifying the name, language and rules | Pass |
 | Added category appears as a new tab and any emails reclassified appear under it | Pass |
-| Added category appears as an option to move email to | Fail |
+| Added category appears as an option to move email to | Pass |
 | User can edit rules for a given category | Pass |
 | Edited rules then reclassify emails | Pass |
 | User can delete a category | Pass |

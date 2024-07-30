@@ -3,7 +3,7 @@ import { Dropdown, ListGroup } from 'react-bootstrap';
 import Avatar from 'react-avatar';
 import './styles/EmailItem.css';
 
-const EmailItem = ({ email, onClick, onCategoryChange }) => {
+const EmailItem = ({ email, categories, onClick, onCategoryChange }) => {
   const snippet = email.body.length > 200 ? `${email.body.substring(0, 197)}...` : email.body;
 
   // Function to get the initals from the sender of the email to display in the avatar 
@@ -37,7 +37,7 @@ const EmailItem = ({ email, onClick, onCategoryChange }) => {
             &#x2630;
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            {['Immediate Attention', 'Promotional', 'Updates', 'Junk'].map(category => (
+            {Object.keys(categories).map(category => (
               <Dropdown.Item
                 key={category}
                 onClick={() => onCategoryChange(email.id, category)}
