@@ -23,12 +23,13 @@ const App = () => {
   const [showCategoryForm, setShowCategoryForm] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
 
+  // Set email and rule data
   useEffect(() => {
     fetchEmails().then(data => setEmails(data['emails']));
-    fetchEmails().then(data => console.log(data['emails']));
     fetchRules().then(data => setCategories(data));
   }, []);
 
+  // Function to assist in searching for email by sender, subject and body
   const filteredEmails = emails.filter(email => 
     (activeCategory === 'All' || email.category === activeCategory) &&
     (email.from.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -36,6 +37,7 @@ const App = () => {
      email.body.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
+  // Function to handle adding a new category. Sends data to backend and sets stateful categories and emails from the return value
   const handleAddCategory = (category) => {
     addRule({
       category: category.name,
@@ -48,6 +50,7 @@ const App = () => {
     });
   };
 
+  // Function to handle editing a category. Sends data to backend and sets stateful categories and emails from the return value
   const handleEditCategory = (updatedCategory) => {
     editRule({
       category: updatedCategory.name,
@@ -61,6 +64,7 @@ const App = () => {
     });
   };
 
+  // Function to handle deleting a category. Sends data to backend and sets stateful categories and emails from the return value
   const handleDeleteCategory = (category) => {
     deleteRule(category).then((data) => {
       setCategories(data['rules']);
@@ -69,6 +73,7 @@ const App = () => {
     });
   };
 
+  // Function to handle updating an emails category. Sends data to backend and updates stateful email data
   const handleUpdateEmailCategory = (emailId, newCategory) => {
     updateEmailCategory(emailId, newCategory).then((data) => {
       setEmails(data['emails']);
@@ -84,6 +89,7 @@ const App = () => {
           setSearchQuery={setSearchQuery}
           onAddCategory={() => setShowCategoryForm(true)}
         />
+        {/* Shows category form if adding or editing a category. Otherwise show the category tabs and email list/ detail */}
         {showCategoryForm || editingCategory ? (
           <CategoryForm
             category={editingCategory}
@@ -102,6 +108,7 @@ const App = () => {
               onEditCategory={setEditingCategory}
               onDeleteCategory={handleDeleteCategory}
             />
+            {/* Display Email list is no email is selected. Otherwise show detailed view */}
             {selectedEmail ? (
               <EmailDetail email={selectedEmail} onClose={() => setSelectedEmail(null)} />
             ) : (
