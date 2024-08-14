@@ -1,4 +1,4 @@
-# Email Classifier
+![image](https://github.com/user-attachments/assets/6c1cb61e-3f2c-498a-baef-b915b47fd028)# Email Classifier
 
 ## Table of Contents
 - [Overview](#overview)
@@ -180,3 +180,28 @@ For this project I considered doing unit tests for both the front and backend. F
 | Wesbite performs reasonaly in mobile view | Pass |
 | Burger menu dropdown works | Pass |
 | User known which email they are viewing using hover over features | Pass |
+
+## Troubleshooting
+
+1. Python requirements don't load correctly using `conda env create -f environment.yml`?
+
+![image](https://github.com/user-attachments/assets/87a11340-9ec0-427f-a59b-288824d62160)
+
+Try removing the spacy language libraries from the environment and manually installing them to the env
+- Remove lines:
+- 
+```
+- da-core-news-sm==3.7.0
+- en-core-web-sm==3.7.1
+- nl-core-news-sm==3.7.0
+```
+
+- Re-run the `conda env create -f environment.yml` command. If this works, activate the environment `conda activate emailclassifier`
+- Run:
+
+```
+pip install spacy
+python -m spacy download en_core_web_sm
+python -m spacy download nl_core_news_sm
+python -m spacy download da-core-news-sm
+```
