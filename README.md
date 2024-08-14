@@ -48,7 +48,7 @@ cd Email-classifier
 ### Backend
 
 1. Navigate to the backend directory. `cd backend`
-2. Install dependencies: `conda create --name emailclassifier --file requirements.txt`
+2. Install dependencies: `conda env create -f environment.yml`
 3. Activate conda environent `conda activate emailclassifier`
 4. Run the server: `python main.py`
 
