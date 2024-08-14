@@ -13,6 +13,7 @@
 - [Approach](#approach)
 - [Classification Lit Review and Thoughts](#classification-lit-review-and-thoughts)
 - [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
 
 ## Overview
 This project is an email client application developed as part of a technical assignment for Shipster. The application classifies emails into categories such as Immediate Attention, Promotional, Updates, and Junk. It includes a user-friendly interface built with React and Bootstrap, and a backend API built with Python and Flask for managing email data and rules. Emails are classified using a rule based filtering approach with help from Natural Language Processing (spaCy) to support multiple languages. Given more data, a hybrid classification approach would be used with a machine learning model. Similarly, an SQLLite database would also be added to store stateful data and improve category management features described below. 
@@ -204,4 +205,10 @@ pip install spacy
 python -m spacy download en_core_web_sm
 python -m spacy download nl_core_news_sm
 python -m spacy download da-core-news-sm
+```
+
+2. To remove/delete a conda environment
+
+```
+conda remove -n ENV_NAME --all
 ```
