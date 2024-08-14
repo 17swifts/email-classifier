@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6c1cb61e-3f2c-498a-baef-b915b47fd028)# Email Classifier
+# Email Classifier
 
 ## Table of Contents
 - [Overview](#overview)
@@ -189,7 +189,7 @@ For this project I considered doing unit tests for both the front and backend. F
 
 Try removing the spacy language libraries from the environment and manually installing them to the env
 - Remove lines:
-- 
+
 ```
 - da-core-news-sm==3.7.0
 - en-core-web-sm==3.7.1
